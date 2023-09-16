@@ -47,7 +47,7 @@ function compareAndHighlightDictionaries(tableId, dictionaryA, dictionaryB) {
       if (valuesA.some(valueA => valuesB.includes(valueA))) {
           cellKey.innerHTML = `<span class="highlight">${key}</span>`;
       } else {
-          cellKey.textContent = key;
+          cellKey.innerHTML = `<span class="non-match">${key}</span>`;
       }
 
       // Create arrays to store highlighted values for each dictionary
@@ -60,7 +60,7 @@ function compareAndHighlightDictionaries(tableId, dictionaryA, dictionaryB) {
               // Highlight the value if it matches in both dictionaries
               highlightedValuesA.push(`<span class="highlight">${valueA}</span>`);
           } else {
-              highlightedValuesA.push(valueA);
+              highlightedValuesA.push(`<span class="non-match">${valueA}</span>`);
           }
       });
 
@@ -70,7 +70,7 @@ function compareAndHighlightDictionaries(tableId, dictionaryA, dictionaryB) {
               // Highlight the value if it matches in both dictionaries
               highlightedValuesB.push(`<span class="highlight">${valueB}</span>`);
           } else {
-              highlightedValuesB.push(valueB);
+              highlightedValuesB.push(`<span class="non-match">${valueB}</span>`);
           }
       });
 
