@@ -1,16 +1,23 @@
-table {
-    border-collapse: collapse;
+.table-container {
+  display:flex
 }
 
-table, th, td {
-    border: 1px solid black;
-    padding: 10px;
-    text-align: left;
+.table-wrapper {
+  margin: 10px;
+}
+
+.table {
+  border-collapse: collapse;
+}
+
+.table, th, td {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
 }
 
 .highlight {
-    color: green;
-    /* background-color: yellow; */
+  color: green;
 }
 
 .non-match {
