@@ -52,7 +52,7 @@ function compareAndHighlightDictionaries(info, dictionaryA, dictionaryB) {
   document.getElementById(info.list_B_Heading_ID).textContent = info.list_B_Heading
 
   // Get a combined list of all unique keys from both dictionaries
-  const allKeys = new Set([...Object.keys(dictionaryA), ...Object.keys(dictionaryB)]);
+  const allKeys = new Set([...Object.keys(dictionaryA), ...Object.keys(dictionaryB)].sort())
 
   // Iterate through each key
   allKeys.forEach(key => {
@@ -111,9 +111,9 @@ window.addEventListener("load", function () {
   fetchCSVFile(list_uat_file, function (csvData1) {
     fetchCSVFile(list_blue_file, function (csvData2) {
       fetchCSVFile(list_green_file, function (csvData3) {
-        const dictionaryUAT = sortDictionary(csvToDictionary(csvData1))
-        const dictionaryBlue = sortDictionary(csvToDictionary(csvData2))
-        const dictionaryGreen = sortDictionary(csvToDictionary(csvData3))
+        const dictionaryUAT = csvToDictionary(csvData1) //sortDictionary(csvToDictionary(csvData1))
+        const dictionaryBlue = csvToDictionary(csvData2) //sortDictionary(csvToDictionary(csvData2))
+        const dictionaryGreen = csvToDictionary(csvData3) //sortDictionary(csvToDictionary(csvData3))
 
         const info1 = {
           tableId: "comparisonTable1",
