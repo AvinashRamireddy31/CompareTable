@@ -88,8 +88,11 @@ function compareAndHighlightDictionaries(tableId, dictionaryA, dictionaryB) {
 
 // Call the function to fetch CSV data and generate the table when the page loads
 window.addEventListener("load", function () {
-  fetchCSVFile('data.csv', function (csvData1) {
-    fetchCSVFile('data2.csv', function (csvData2) {
+  console.log("myParam1:", csvFile1);
+  console.log("myParam2:", csvFile2);
+
+  fetchCSVFile(csvFile1, function (csvData1) {
+    fetchCSVFile(csvFile2, function (csvData2) {
       const dictionaryA = csvToDictionary(csvData1);
       const dictionaryB = csvToDictionary(csvData2);
 
