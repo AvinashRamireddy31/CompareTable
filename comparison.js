@@ -17,7 +17,7 @@ function csvToDictionary(csvData) {
   lines.forEach(line => {
     // Split each line into name and values using a comma as the separator
     const parts = line.split(',');
-    const name = parts[0].trim();
+    const name = parts[0].trim().replace(/"/g, '');
     const values = parts.slice(1).join(',').split(',').map(value => value.trim().replace(/"/g, ''));
 
     // Store the values as an array in the dictionary using the name as the key
