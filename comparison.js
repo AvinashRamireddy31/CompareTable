@@ -65,7 +65,7 @@ function compareAndHighlightDictionaries(info, dictionaryA, dictionaryB) {
 
     // Highlight the name if there are any matches in listA and listB values
     if (valuesA.some(valueA => valuesB.includes(valueA))) {
-        cellKey.innerHTML = `<span class="highlight">${key}</span>`;
+      cellKey.innerHTML = `<span class="highlight">${key}</span>`;
     } else {
       cellKey.innerHTML = `<span class="non-match">${key}</span>`;
     }
