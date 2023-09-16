@@ -1,9 +1,9 @@
 // Function to fetch data from CSV file
 function fetchCSVFile(filename, callback) {
   fetch(filename)
-      .then(response => response.text())
-      .then(data => callback(data))
-      .catch(error => console.error('Error:', error));
+    .then(response => response.text())
+    .then(data => callback(data))
+    .catch(error => console.error('Error:', error));
 }
 
 // Function to sort dictionary keys and values alphabetically
