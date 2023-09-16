@@ -6,6 +6,23 @@ function fetchCSVFile(filename, callback) {
       .catch(error => console.error('Error:', error));
 }
 
+// Function to sort dictionary keys and values alphabetically
+function sortDictionary(dictionary) {
+  const sortedKeys = Object.keys(dictionary).sort();
+  const sortedValues = {};
+
+  sortedKeys.forEach((key) => {
+    sortedValues[key] = dictionary[key].slice().sort();
+  });
+
+  const sortedDictionary = {};
+  sortedKeys.forEach((key) => {
+    sortedDictionary[key] = sortedValues[key];
+  });
+
+  return sortedDictionary;
+}
+
 // Function to convert CSV data to a dictionary
 function csvToDictionary(csvData) {
   const dictionary = {};
@@ -94,9 +111,9 @@ window.addEventListener("load", function () {
   fetchCSVFile(list_uat_file, function (csvData1) {
     fetchCSVFile(list_blue_file, function (csvData2) {
       fetchCSVFile(list_green_file, function (csvData3) {
-        const dictionaryUAT = csvToDictionary(csvData1);
-        const dictionaryBlue = csvToDictionary(csvData2);
-        const dictionaryGreen = csvToDictionary(csvData3);
+        const dictionaryUAT = sortDictionary(csvToDictionary(csvData1))
+        const dictionaryBlue = sortDictionary(csvToDictionary(csvData2))
+        const dictionaryGreen = sortDictionary(csvToDictionary(csvData3))
 
         const info1 = {
           tableId: "comparisonTable1",
@@ -106,16 +123,24 @@ window.addEventListener("load", function () {
           list_B_Heading: "PROD-BLUE",
         }
 
+        // const info2 = {
+        //   tableId: "comparisonTable2",
+        //   list_A_Heading_ID: "list_A_Heading2",
+        //   list_B_Heading_ID: "list_B_Heading2",
+        //   list_A_Heading: "PROD-GREEN",
+        //   list_B_Heading: "UAT",
+        // }
+
         const info2 = {
           tableId: "comparisonTable2",
           list_A_Heading_ID: "list_A_Heading2",
           list_B_Heading_ID: "list_B_Heading2",
-          list_A_Heading: "PROD-GREEN",
+          list_A_Heading: "PROD-BLUE",
           list_B_Heading: "UAT",
         }
 
         compareAndHighlightDictionaries(info1, dictionaryUAT, dictionaryBlue);
-        compareAndHighlightDictionaries(info2, dictionaryGreen, dictionaryUAT);
+        compareAndHighlightDictionaries(info2, dictionaryBlue, dictionaryUAT);
       });
     });
   });
