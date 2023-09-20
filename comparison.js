@@ -123,21 +123,21 @@ window.addEventListener("load", function () {
           list_B_Heading: "PROD-BLUE",
         }
 
-        // const info2 = {
-        //   tableId: "comparisonTable2",
-        //   list_A_Heading_ID: "list_A_Heading2",
-        //   list_B_Heading_ID: "list_B_Heading2",
-        //   list_A_Heading: "PROD-GREEN",
-        //   list_B_Heading: "UAT",
-        // }
-
         const info2 = {
           tableId: "comparisonTable2",
           list_A_Heading_ID: "list_A_Heading2",
           list_B_Heading_ID: "list_B_Heading2",
-          list_A_Heading: "PROD-BLUE",
+          list_A_Heading: "PROD-GREEN",
           list_B_Heading: "UAT",
         }
+
+        // const info2 = {
+        //   tableId: "comparisonTable2",
+        //   list_A_Heading_ID: "list_A_Heading2",
+        //   list_B_Heading_ID: "list_B_Heading2",
+        //   list_A_Heading: "PROD-BLUE",
+        //   list_B_Heading: "UAT",
+        // }
 
         compareAndHighlightDictionaries(info1, dictionaryUAT, dictionaryBlue);
         compareAndHighlightDictionaries(info2, dictionaryBlue, dictionaryUAT);
