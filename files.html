@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Comparison</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h2>List Comparison</h2>
+    <table id="comparisonTable">
+        <thead>
+            <tr>
+                <th>listABC</th>
+                <th>listXYZ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Table rows will be generated dynamically using JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // Function to fetch text data from a file
+        function fetchTextFile(filename, callback) {
+            fetch(filename)
+                .then(response => response.text())
+                .then(data => callback(data))
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Function to generate the table rows and compare/highlight items
+        function generateTable(listABCData, listXYZData) {
+            const table = document.getElementById("comparisonTable");
+            const tbody = table.querySelector("tbody");
+
+            const listABC = listABCData.split('\n').filter(Boolean); // Split by newline and remove empty lines
+            const listXYZ = listXYZData.split('\n').filter(Boolean); // Split by newline and remove empty lines
+
+            listABC.forEach((itemA) => {
+                const row = document.createElement("tr");
+                const cellA = document.createElement("td");
+                const cellB = document.createElement("td");
+
+                cellA.textContent = itemA;
+
+                if (listXYZ.includes(itemA)) {
+                    cellB.textContent = itemA;
+                    cellA.classList.add("highlight");
+                    cellB.classList.add("highlight");
+                } else {
+                    cellB.textContent = "";
+                }
+
+                row.appendChild(cellA);
+                row.appendChild(cellB);
+                tbody.appendChild(row);
+            });
+
+            listXYZ.forEach((itemB) => {
+                if (!listABC.includes(itemB)) {
+                    const row = document.createElement("tr");
+                    const cellA = document.createElement("td");
+                    const cellB = document.createElement("td");
+
+                    cellA.textContent = "";
+                    cellB.textContent = itemB;
+
+                    row.appendChild(cellA);
+                    row.appendChild(cellB);
+                    tbody.appendChild(row);
+                }
+            });
+        }
+
+        // Call the function to fetch text data for listABC and listXYZ
+        window.addEventListener("load", function () {
+            fetchTextFile('uat.txt', function (listABCData) {
+                fetchTextFile('prod.txt', function (listXYZData) {
+                    generateTable(listABCData, listXYZData);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
